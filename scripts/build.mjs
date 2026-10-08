@@ -1,0 +1,13 @@
+import { cpSync, mkdirSync, rmSync } from 'node:fs';
+import { join } from 'node:path';
+const root=new URL('..',import.meta.url).pathname;
+const out=join(root,'public');rmSync(out,{recursive:true,force:true});mkdirSync(join(out,'vendor'),{recursive:true});cpSync(join(root,'web'),out,{recursive:true});
+for(const name of ['pdf.mjs','pdf.worker.mjs'])cpSync(join(root,'node_modules/pdfjs-dist/build',name),join(out,'vendor',name));
+cpSync(join(root,'node_modules/pdfjs-dist/standard_fonts'),join(out,'vendor/pdfjs-fonts'),{recursive:true});
+cpSync(join(root,'node_modules/pdfjs-dist/wasm'),join(out,'vendor/pdfjs-wasm'),{recursive:true});
+cpSync(join(root,'node_modules/tesseract.js/dist/worker.min.js'),join(out,'vendor/tesseract-worker.min.js'));
+cpSync(join(root,'node_modules/tesseract.js/dist/tesseract.min.js'),join(out,'vendor/tesseract.min.js'));
+cpSync(join(root,'node_modules/tesseract.js-core'),join(out,'vendor/tesseract-core'),{recursive:true});
+const response=await fetch('https://raw.githubusercontent.com/naptha/tessdata/gh-pages/4.0.0/eng.traineddata.gz');if(!response.ok)throw new Error('Could not download the pinned English OCR model.');
+const {writeFileSync}=await import('node:fs');mkdirSync(join(out,'vendor/tessdata'),{recursive:true});writeFileSync(join(out,'vendor/tessdata/eng.traineddata.gz'),Buffer.from(await response.arrayBuffer()));
+console.log('Built static assets, PDF extraction and local OCR assets.');

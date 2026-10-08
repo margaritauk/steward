@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "banquet-steward",
+  "main": "src/index.mjs",
+  "compatibility_date": "2026-10-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "assets": {"directory": "public", "binding": "ASSETS", "run_worker_first": ["/api/*"]},
+  "durable_objects": {"bindings": [{"name": "BANQUET", "class_name": "BanquetVenue"}]},
+  "migrations": [{"tag": "v1", "new_sqlite_classes": ["BanquetVenue"]}],
+  "vars": {"MAX_STORAGE_BYTES": "419430400"}
+}

@@ -1,0 +1,2 @@
+# Local preview only. Replace with your own secret for a hosted deployment.
+BOOTSTRAP_TOKEN=local-preview-setup-token
