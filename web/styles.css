@@ -7,3 +7,48 @@ button.stat{display:block;width:100%;text-align:left;color:var(--ink);font:inher
 button.stat:hover{border-color:#90a780;box-shadow:0 4px 15px #173b3512}
 button.stat.selected{border-color:#426c50;box-shadow:inset 0 0 0 1px #426c50;background:#f5f8ef}
 button.stat.selected:after{content:'';position:absolute;left:18px;right:18px;top:0;height:3px;border-radius:0 0 4px 4px;background:var(--green)}
+
+/* Phase 1: prioritized manager work queue and steward-level drill-downs. */
+.attention-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:23px;margin:0 0 26px}
+.attention-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:19px}
+.attention-heading h2{font-size:20px;letter-spacing:-.4px;margin:7px 0 5px}
+.attention-heading p{font-size:12px;color:var(--muted);margin:0}
+.attention-heading .button{flex-shrink:0}
+.attention-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:14px}
+.attention-tile{border:1px solid var(--line);border-radius:10px;background:#f7f8f4;padding:12px;text-align:left;color:var(--ink);cursor:pointer}
+.attention-tile:hover,.attention-tile.active{border-color:#79997b;background:#f0f5e9}
+.attention-tile[aria-pressed=true]{box-shadow:inset 0 0 0 1px #79997b}
+.attention-tile strong{font-size:23px;display:block;line-height:1.2;font-variant-numeric:tabular-nums}
+.attention-tile span{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+.attention-tile:nth-child(2) strong{color:var(--red)}
+.attention-list{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.attention-row{display:flex;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid var(--line);background:white;width:100%;text-align:left;color:var(--ink)}
+.attention-row:last-child{border-bottom:0}
+.attention-row:hover{background:#f6f8f2}
+.attention-marker{padding:6px 9px;min-width:82px;border-radius:6px;text-align:center;font-size:10px;font-weight:700;background:#ecf0e7;color:#50684c}
+.attention-marker.late{background:#faeee9;color:#a34231}
+.attention-marker.soon{background:#f8f0df;color:#8b672e}
+.attention-event{flex:1;min-width:0}
+.attention-event strong{font-size:12px;display:block;overflow-wrap:anywhere}
+.attention-event small{font-size:10px;color:var(--muted);display:block;margin-top:5px;overflow-wrap:anywhere}
+.attention-deadline{color:var(--muted);font-size:11px;white-space:nowrap}
+.attention-row>.icon{width:15px;height:15px;flex-shrink:0}
+.attention-empty{font-size:12px;padding:18px 15px;color:var(--muted)}
+.attention-more{font-size:12px;background:transparent;color:var(--green);text-decoration:underline;margin-top:12px;padding:7px 2px}
+.attention-footnote{font-size:10px;color:var(--muted);line-height:1.5;margin:13px 0 0}
+.steward-scope{display:flex;align-items:center;flex-wrap:wrap;gap:11px;background:#eaf0e2;border:1px solid #d3dfc6;border-radius:12px;padding:12px 15px;margin-bottom:18px}
+.steward-scope>div{display:flex;align-items:center;gap:10px;flex:1;min-width:180px}
+.steward-scope strong{font-size:13px;display:block}
+.steward-scope small{font-size:11px;color:var(--muted);display:block;margin-top:4px}
+.team-open{display:block;width:100%;text-align:left;background:transparent;color:var(--ink);padding:0;cursor:pointer}
+.team-open:hover .team-name{text-decoration:underline}
+.team-open .team-head{margin-bottom:17px}
+.team-open .team-head>span:nth-child(2){flex:1;min-width:0}
+.team-open .team-head>.icon{width:15px;height:15px;color:var(--muted)}
+.team-name{font-size:15px;font-weight:650;display:block;overflow-wrap:anywhere}
+.team-open .team-head small{display:block;font-size:11px;margin-top:5px;line-height:1.4}
+.event-list{scroll-margin-top:16px}
+.attention-panel button:focus-visible,.team-open:focus-visible,.steward-scope button:focus-visible{outline:3px solid #7da463;outline-offset:2px}
+@media(max-width:950px){.attention-panel{padding:18px}.attention-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.attention-heading{align-items:flex-start}.attention-heading h2{font-size:18px}.attention-heading .button{padding:8px;white-space:normal;text-align:center;font-size:11px}.attention-row{flex-wrap:wrap;gap:8px;padding:13px 12px}.attention-marker{min-width:70px}.attention-event{flex-basis:calc(100% - 95px)}.attention-deadline{margin-left:78px}.attention-row>.icon{margin-left:auto}.attention-panel{margin-bottom:21px}.steward-scope .button{flex:1}}
+@media(max-width:380px){.attention-heading{flex-wrap:wrap}.attention-deadline{margin-left:0}}
